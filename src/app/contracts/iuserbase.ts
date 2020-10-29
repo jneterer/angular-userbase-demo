@@ -17,6 +17,13 @@ export interface IForgotPasswordDto {
   username: string;
 }
 
+export interface IUpdateAccountDto {
+  username: string;
+  email?: string;
+  currentPassword?: string;
+  newPassword?: string;
+}
+
 export interface IError {
   name: string;
   message: string;

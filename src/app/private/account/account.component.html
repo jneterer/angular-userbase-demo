@@ -1,0 +1,22 @@
+<h2>Account</h2>
+<p *ngIf="changePasswordRequired" class="error">Please change your password before continuing.</p>
+<h3>Account Email</h3>
+<form (ngSubmit)="saveProfileInfo($event)">
+  <input placeholder="Email" [(ngModel)]="email" id="email" name="email" type="email">
+  <button type="submit">Submit</button><br>
+  <p *ngIf="saveProfileSuccess" class="success">Updating your profile was successful!</p>
+  <p *ngIf="saveProfileError" class="error">{{ saveProfileError }}</p>
+</form>
+<h3>Change Password</h3>
+<form [formGroup]="changePasswordForm" (ngSubmit)="changePassword($event)">
+  <input placeholder="Current Password *" formControlName="currentPassword" id="currentPassword" name="currentPassword" type="password" required>
+  <input placeholder="New Password *" formControlName="newPassword" id="newPassword" name="newPassword" type="password" required>
+  <button type="submit">Sign Up</button><br>
+  <p *ngIf="changePasswordSuccess" class="success">Changing your password was successful!</p>
+  <p *ngIf="changePasswordError" class="error">{{ changePasswordError }}</p>
+</form>
+<h2 class="error">Danger Zone - Delete Account</h2>
+<p>Be advised that by performing this action, your account is not recoverable.</p>
+<button type="button" style="margin-left: 0px;" (click)="wantsToDelete = true" [disabled]="wantsToDelete">Delete Account</button>
+<button type="button" [class.hidden]="!wantsToDelete" (click)="deleteAccount($event)">Confirm Delete Account</button>
+<p *ngIf="deleteAccountError" class="error">{{ deleteAccountError }}</p>

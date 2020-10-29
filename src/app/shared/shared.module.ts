@@ -8,14 +8,12 @@ import { RouterModule } from '@angular/router';
   declarations: [],
   imports: [
     CommonModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule
   ],
   exports: [
     CommonModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule

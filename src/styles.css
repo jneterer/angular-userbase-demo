@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.error {
+  color: red;
+  &-button {
+    background: red;
+    color: white;
+  }
+}
+.success {
+  color: green;
+}
+.hidden {
+  display: none;
+}

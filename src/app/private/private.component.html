@@ -1,1 +1,4 @@
-<p>private works!</p>
+<p>Welcome, {{ user.username }}!</p>
+<router-outlet></router-outlet>
+<hr>
+<button type="button" (click)="signOut($event)">Sign Out</button>

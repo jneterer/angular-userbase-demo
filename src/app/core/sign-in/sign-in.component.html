@@ -3,7 +3,7 @@
   <input placeholder="Username *" formControlName="username" id="username" name="username" type="text" required>
   <input placeholder="Password *" formControlName="password" id="password" name="password" type="password" required>
   <button type="submit">Sign In</button><br>
-  <p *ngIf="signInError">{{ signInError }}</p>
+  <p *ngIf="signInError" class="error">{{ signInError }}</p>
   <a routerLink="/signup">Sign Up</a><br>
   <a routerLink="/forgot-password">Forgot Password?</a>
 </form>

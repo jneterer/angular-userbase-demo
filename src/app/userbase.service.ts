@@ -3,7 +3,7 @@ import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import userbase, { Session, UserResult } from 'userbase-js';
 import { environment } from '../environments/environment';
-import { IError, IForgotPasswordDto, ISignInDto, ISignUpDto } from './contracts/iuserbase';
+import { IError, IForgotPasswordDto, ISignInDto, ISignUpDto, IUpdateAccountDto } from './contracts/iuserbase';
 
 @Injectable({
   providedIn: 'root'
@@ -96,17 +96,49 @@ export class UserbaseService {
   }
 
   /**
+   * Updates the user's account with either profile info or a new password.
+   * @param {IUpdateAccountDto}  
+   * @returns {Observable<void>}
+   */
+  updateAccount(updateProfileDto: IUpdateAccountDto): Observable<void> {
+    return from(userbase.updateUser(updateProfileDto))
+    .pipe(
+      map(() => {
+        // Only update the user if we aren't changing their password.
+        if (!updateProfileDto.currentPassword && !updateProfileDto.newPassword) {
+          let newUser: UserResult = <UserResult>Object.assign({}, updateProfileDto);
+          this.updateUser(newUser);
+        }
+      })
+    );
+  }
+
+  /**
+   * Deletes the user's account.
+   * @returns {Observable<void>}
+   */
+  deleteAccount(): Observable<void> {
+    return from(userbase.deleteUser())
+    .pipe(
+      map(() => {
+        this.clearUser()   
+        return;
+      })
+    );
+  }
+
+  /**
    * Updates the current user.
    * @param {UserResult} user 
    */
-  updateUser(user: UserResult): void {
+  private updateUser(user: UserResult): void {
     this.currentUser.next(Object.assign({}, user));
   }
 
   /**
    * Clears the current user.
    */
-  clearUser(): void {
+  private clearUser(): void {
     this.currentUser.next(null);
   }
 
