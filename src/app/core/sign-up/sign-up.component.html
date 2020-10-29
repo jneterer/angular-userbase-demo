@@ -1,0 +1,10 @@
+<h2>Sign Up</h2>
+<form [formGroup]="signUpForm" (ngSubmit)="signUp($event)">
+  <input placeholder="Username *" formControlName="username" id="username" name="username" type="text" required>
+  <input placeholder="Password *" formControlName="password" id="password" name="password" type="password" required>
+  <input placeholder="Email" formControlName="email" id="email" name="email" type="email">
+  <p>Provide a valid email address in case you forget your password for account recovery.</p>
+  <button type="submit">Sign Up</button><br>
+  <p *ngIf="signUpError">{{ signUpError }}</p>
+  <a routerLink="/signin">Already have an account?</a>
+</form>

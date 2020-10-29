@@ -1,7 +1,7 @@
 <h1>Angular Userbase Demo</h1>
 <img src="../assets/angular-userbase.jpg" alt="Angular and Userbase Image" style="height: 100px;">
 <ng-container *ngIf="initialized; else notInitialized">
-  <p>Welcome!</p>
+  <router-outlet></router-outlet>
 </ng-container>
 <ng-template #notInitialized>
   <p>There was an error initializing Userbase. Refresh the page to try again.</p>
