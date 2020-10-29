@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserbaseService } from './userbase.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-userbase-demo';
+  initialized: boolean = null;
+
+  constructor(private userbaseService: UserbaseService) {
+    this.userbaseService.$initialized.subscribe((initialized: boolean) => {
+      this.initialized = initialized;
+    });
+  }
 }
