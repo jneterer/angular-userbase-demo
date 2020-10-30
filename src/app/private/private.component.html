@@ -1,4 +1,11 @@
-<p>Welcome, {{ user.username }}!</p>
+<hr>
 <router-outlet></router-outlet>
 <hr>
-<button type="button" (click)="signOut($event)">Sign Out</button>
+<footer>
+<p>Welcome, {{ user.username }}!</p>
+
+  <a [routerLink]="[ '/app' ]">Home</a>
+  <a [routerLink]="[ '/app/todos' ]">Todos</a>
+  <a [routerLink]="[ '/app/account' ]">Account</a>
+  <button type="button" (click)="signOut($event)">Sign Out</button>
+</footer>

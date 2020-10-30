@@ -24,6 +24,11 @@ export interface IUpdateAccountDto {
   newPassword?: string;
 }
 
+export interface IItem<T> {
+  item: T;
+  itemId: string;
+}
+
 export interface IError {
   name: string;
   message: string;

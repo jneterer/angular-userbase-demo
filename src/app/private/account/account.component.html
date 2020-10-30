@@ -11,7 +11,7 @@
 <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword($event)">
   <input placeholder="Current Password *" formControlName="currentPassword" id="currentPassword" name="currentPassword" type="password" required>
   <input placeholder="New Password *" formControlName="newPassword" id="newPassword" name="newPassword" type="password" required>
-  <button type="submit">Sign Up</button><br>
+  <button type="submit">Change Password</button><br>
   <p *ngIf="changePasswordSuccess" class="success">Changing your password was successful!</p>
   <p *ngIf="changePasswordError" class="error">{{ changePasswordError }}</p>
 </form>

@@ -1,0 +1,16 @@
+input:not(:first-child), button {
+  margin-left: 5px;
+}
+
+.list-container {
+  display: flex;
+  align-items: center;
+}
+
+.list-container label, span {
+  margin-right: 25px;
+}
+
+ul li:not(:last-child) {
+  margin-bottom: 10px;
+}

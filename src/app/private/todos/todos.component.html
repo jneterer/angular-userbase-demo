@@ -1,0 +1,65 @@
+<h2>Your TODOs</h2>
+<ng-container *ngIf="!getTodosError; else errorRetrievingTodos">
+  <p *ngIf="updateTodoError" class="error">{{ updateTodoError }}</p>
+  <ng-container *ngIf="todos.length; else noTodos">
+    <ul>
+      <li *ngFor="let todo of todos;">
+        <div class="list-container">
+          <input type="checkbox" [name]="'complete-' + todo.id" [id]="'complete-' + todo.id" [checked]="todo.item.complete" (change)="toggleCompleted(todo)">
+          <label [for]="'complete-' + todo.id">Complete</label><br>
+          <span>{{ todo.item.todoName }}</span>
+          <button (click)="deleteTodo(todo.itemId)">Delete</button>
+        </div>
+      </li>
+    </ul>
+    <ng-container *ngIf="sharedWith.length > 0; else notShared">
+      <p>Your todos are shared with:</p>
+      <ul>
+        <li *ngFor="let user of sharedWith">
+          <div class="list-container">
+            <span>{{ user.username }}</span>
+            <button (click)="revokeAccess(user.username)">Remove Access</button>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #notShared>
+      <p>Not Shared With Any Users</p>
+    </ng-template>
+  </ng-container>
+  <ng-template #noTodos>
+    <p>No TODOs, create your first one below!</p>
+  </ng-template>
+</ng-container>
+<ng-template #errorRetrievingTodos>
+  <p class="error">{{ getTodosError }}</p>
+</ng-template>
+<h2>Create TODO</h2>
+<form (ngSubmit)="createTodo($event)">
+  <input placeholder="Todo Name" [(ngModel)]="todoName" id="todoName" name="todoName" type="text" required>
+  <button type="submit" [disabled]="!todoName">Create Todo</button>
+  <p *ngIf="createTodoError" class="error">{{ createTodoError }}</p>
+</form>
+<h2>Share TODOs</h2>
+<form (ngSubmit)="shareTodos($event)">
+  <input placeholder="Username" [(ngModel)]="username" id="username" name="username" type="text">
+  <button type="submit" [disabled]="!username">Share Todos</button>
+  <p *ngIf="shareTodosError" class="error">{{ shareTodosError }}</p>
+</form>
+<ng-container *ngIf="!getSharedTodosError; else errorGettingTodos">
+  <ng-container *ngIf="sharedWithMe.length > 0; else noSharedTodos">
+    <h2>TODOs Shared With Me:</h2>
+    <ng-container *ngFor="let sharedTodoDb of sharedWithMe">
+      <h3>User: {{ sharedTodoDb.username }}</h3>
+      <ul>
+        <li *ngFor="let item of sharedTodoDb.db">{{ item.item.todoName }}</li>
+      </ul>
+    </ng-container>
+  </ng-container>
+  <ng-template #noSharedTodos>
+    <h2>No TODOs Shared With Me</h2>
+  </ng-template>
+</ng-container>
+<ng-template #errorGettingTodos>
+  <p class="error">{{ getSharedTodosError }}</p>
+</ng-template>  
