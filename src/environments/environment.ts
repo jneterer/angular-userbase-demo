@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   APP_ID: 'e4515b01-e9bf-4c6a-b73b-6d64a2e61ac1',
-  TODOS_DB: 'todos'
+  TODOS_DB: 'todos',
+  FILES_DB: 'files'
 };
 
 /*

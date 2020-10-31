@@ -22,7 +22,7 @@ export class TodosService {
   constructor() { }
 
   /**
-   * Gets the list of TODOs for the user but is not able to return them.
+   * Gets the list of TODOs for the user.
    * @returns {Observable<void>}
    */
   getTodos(): Observable<void> {

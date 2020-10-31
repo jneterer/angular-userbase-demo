@@ -1,0 +1,3 @@
+input:not(:first-child), button {
+  margin-left: 5px;
+}

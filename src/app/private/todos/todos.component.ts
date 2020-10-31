@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Subject } from 'rxjs';
 import { mergeMap, takeUntil } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { TodosService } from './todos.service';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css']
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<any> = new Subject<any>();
   todos: IItem<ITodo>[];
   getTodosError: string;

@@ -1,0 +1,33 @@
+<h2>Your Files</h2>
+<p *ngIf="updateFileError"class="error">{{ updateFileError }}</p>
+<ng-container *ngIf="!getFilesError; else errorRetrievingFiles">
+  <ng-container *ngIf="files.length; else noFiles">
+    <ul>
+      <li *ngFor="let file of files;">
+        <div class="list-container">
+          <span>{{ file.item.fileName }} {{ uploadProgress !== null ? (uploadProgress | percent ) : '' }}</span>
+          <button (click)="downloadFile(file.fileId)" [disabled]="uploadProgress !== null">Download</button>
+          <button (click)="deleteFile(file.itemId)" [disabled]="uploadProgress !== null">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noFiles>
+    <p>No files, upload your first one below!</p>
+  </ng-template>
+</ng-container>
+<ng-template #errorRetrievingFiles>
+  <p class="error">{{ getFilesError }}</p>
+</ng-template>
+<h2>Upload File</h2>
+<ng-container *ngIf="files.length > 0; else canUpload">
+  <p>This is just a demo, you can only upload one file to your account.</p>
+</ng-container>
+<ng-template #canUpload>
+  <form (ngSubmit)="uploadFile($event)">
+    <input placeholder="File Name" [(ngModel)]="fileName" id="fileName" name="fileName" type="text" required>
+    <input #fileInput id="file" name="file" type="file" (change)="selectFile($event.target.files)" required>
+    <button type="submit" [disabled]="!fileName || !file">Upload File</button>
+    <p *ngIf="uploadFileError" class="error">{{ uploadFileError }}</p>
+  </form>
+</ng-template>
