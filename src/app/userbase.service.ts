@@ -128,6 +128,14 @@ export class UserbaseService {
   }
 
   /**
+   * Returns the current user.
+   * @returns {UserResult}
+   */
+  getCurrentUser(): UserResult {
+    return this.currentUser.value;
+  }
+
+  /**
    * Updates the current user.
    * @param {UserResult} user 
    */

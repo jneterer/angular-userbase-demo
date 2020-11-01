@@ -41,11 +41,11 @@ export class SignInComponent implements OnInit {
             }
           });
         } else {
-          this.router.navigate(['/app']);
+          this.router.navigate(['/app/todos']);
         }
       }, (error: IError) => {
         if (error.name === 'UserAlreadySignedIn') {
-          this.router.navigate(['/app']);
+          this.router.navigate(['/app/todos']);
         } else {
           this.signInError = error.message;
         }

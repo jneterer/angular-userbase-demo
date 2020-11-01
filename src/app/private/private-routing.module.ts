@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PrivateGuard } from '../shared/private.guard';
 import { AccountComponent } from './account/account.component';
 import { FilesComponent } from './files/files.component';
 import { FilesResolver } from './files/files.resolver.service';
@@ -12,10 +13,17 @@ const routes: Routes = [
   {
     path: '', 
     component: PrivateComponent,
+    canActivate: [PrivateGuard],
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/app/todos'
+      },
       { 
         path: 'todos',
         component: TodosComponent,
+        canActivate: [PrivateGuard],
         resolve: {
           openDB: TodosResolver,
           databases: TodosDBResolver
@@ -24,13 +32,15 @@ const routes: Routes = [
       { 
         path: 'files',
         component: FilesComponent,
+        canActivate: [PrivateGuard],
         resolve: {
           openDB: FilesResolver,
         },
       },
       { 
         path: 'account',
-        component: AccountComponent
+        component: AccountComponent,
+        canActivate: [PrivateGuard]
       }
     ]
   },
@@ -41,6 +51,7 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     FilesResolver,
+    PrivateGuard,
     TodosDBResolver,
     TodosResolver
   ]

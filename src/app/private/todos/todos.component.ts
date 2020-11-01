@@ -41,7 +41,6 @@ export class TodosComponent implements OnInit, OnDestroy {
           return Object.keys(database).includes('databaseId') && !database.isOwner;
         });
         this.sharedWith = databases?.find((database: Database) => database.databaseName === 'todos' && database.isOwner).users;
-        console.log('shared with: ', this.sharedWith);
         return forkJoin(
           sharedWithMe.map((database: Database) => this.todoService.getSharedTodos(database.databaseId, database.receivedFromUsername))
         )

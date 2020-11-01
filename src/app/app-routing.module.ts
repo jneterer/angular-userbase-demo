@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './core/forgot-password/forgot-password.component';
 import { SignInComponent } from './core/sign-in/sign-in.component';
 import { SignUpComponent } from './core/sign-up/sign-up.component';
+import { PrivateGuard } from './shared/private.guard';
+import { PublicGuard } from './shared/public.guard';
 
 const routes: Routes = [
   {
@@ -12,17 +14,24 @@ const routes: Routes = [
   },
   {
     path: 'signin',
-    component: SignInComponent
+    component: SignInComponent,
+    canActivate: [PublicGuard]
   },
   {
     path: 'signup',
-    component: SignUpComponent
+    component: SignUpComponent,
+    canActivate: [PublicGuard]
   },
   {
     path: 'forgot-password',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
+    canActivate: [PublicGuard]
   },
-  { path: 'app', loadChildren: () => import('./private/private.module').then(m => m.PrivateModule) },
+  { 
+    path: 'app',
+    loadChildren: () => import('./private/private.module').then(m => m.PrivateModule),
+    canLoad: [PrivateGuard]
+  },
   {
     path: '**',
     redirectTo: 'signin'
@@ -31,6 +40,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    PrivateGuard,
+    PublicGuard
+  ]
 })
 export class AppRoutingModule { }
