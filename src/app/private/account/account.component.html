@@ -3,7 +3,7 @@
 <h3>Account Email</h3>
 <form (ngSubmit)="saveProfileInfo($event)">
   <input placeholder="Email" [(ngModel)]="email" id="email" name="email" type="email">
-  <button type="submit">Submit</button><br>
+  <button type="submit">Update</button><br>
   <p *ngIf="saveProfileSuccess" class="success">Updating your profile was successful!</p>
   <p *ngIf="saveProfileError" class="error">{{ saveProfileError }}</p>
 </form>
