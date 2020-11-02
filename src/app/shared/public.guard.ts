@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Router,
 import { from, Observable, of } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { Session, UserResult } from 'userbase-js';
+import { IError } from '../contracts/iuserbase';
 import { UserbaseService } from '../userbase.service';
 
 @Injectable({
@@ -47,11 +48,14 @@ export class PublicGuard implements CanActivate, CanActivateChild, CanLoad {
           // If not, let them continue.
           return of(true);
         }),
-        catchError(() => {
-          console.log('q')
-          // If there was an error initializing userbase, redirect them
+        catchError((error: IError) => {
+          // If there was a ServiceUnavailable error initializing userbase, redirect them
           // to the 500 page where the app will continue attempting to initialize.
-          return from(this.router.navigate(['/500']));
+          if (error.name === 'ServiceUnavailable') {
+            return from(this.router.navigate(['/500']));
+          } else {
+            return of(true);
+          }
         })
       );
     }

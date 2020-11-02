@@ -20,6 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
+              "src/_redirects",
               "src/favicon.ico",
               "src/assets"
             ],
@@ -84,6 +85,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
+              "src/_redirects",
               "src/favicon.ico",
               "src/assets"
             ],
