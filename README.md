@@ -12,18 +12,42 @@ There are two things I love developing with, the first is the SPA framework <a h
 ## Initializing Userbase
 
 ## Sign Up
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/sign-up.gif">
+</p>
 
-## Sign In
+## Sign In/Out
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/sign-in-out.gif">
+</p>
 
 ## Forgot Password
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/forgot-password-1.gif">
+</p>
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/forgot-password-2.gif">
+</p>
 
 ## Create, Update, and Delete Items
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/create-update-delete-todo.gif">
+</p>
 
 ## Share Databases
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/share-todos.gif">
+</p>
 
 ## Upload Files
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/upload-file.gif">
+</p>
 
 ## Manage Account
+<p align="center">
+  <img width="100%" src="https://github.com/jneterer/angular-userbase-demo/blob/master/src/assets/gifs/update-email-pass-delete-account.gif">
+</p>
 
 ## Default Angular Generated README.md Content
 
