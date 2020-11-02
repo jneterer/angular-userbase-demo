@@ -17,25 +17,32 @@ export class UserbaseService {
   constructor() { }
 
   /**
-   * Function used to initialized the application in app.module.ts.
-   * @returns {Promise<Session>}
+   * Initializes the userbase application.
+   * @returns {Observable<Session>}
    */
-  initializeUserbase(): Promise<Session> {
-    return new Promise((resolve) => {
-      userbase.init({ appId: environment.APP_ID })
-        .then((session: Session) => {
-          if (session.user) {
-            this.currentUser.next(session.user);
-          }
-          this.initialized.next(true);
-        })
-        .catch((error: IError) => {
-          this.initialized.next(false);
-        })
-        .finally(() => {
-          resolve();
-        });
-    });
+  initializeUserbase(): Observable<Session> {
+    return from(userbase.init({ appId: environment.APP_ID }))
+    .pipe(
+      map((session: Session) => {
+        if (session.user) {
+          this.currentUser.next(session.user);
+        }
+        this.initialized.next(true);
+        return session;
+      }),
+      catchError((error: IError) => {
+        this.initialized.next(false);
+        return throwError(error);
+      })
+    );
+  }
+
+  /**
+   * Returns if the userbase application has been initialized.
+   * @returns {boolean}
+   */
+  get isInitialized(): boolean {
+    return this.initialized.value;
   }
 
   /**

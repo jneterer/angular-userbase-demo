@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './core/forgot-password/forgot-password.component';
+import { InitializationErrorComponent } from './core/initialization-error/initialization-error.component';
 import { SignInComponent } from './core/sign-in/sign-in.component';
 import { SignUpComponent } from './core/sign-up/sign-up.component';
 import { PrivateGuard } from './shared/private.guard';
@@ -11,6 +12,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'signin'
+  },
+  {
+    path: '500',
+    component: InitializationErrorComponent
   },
   {
     path: 'signin',

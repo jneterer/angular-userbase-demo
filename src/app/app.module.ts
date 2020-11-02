@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,14 +17,6 @@ export const appInit = (userbaseService: UserbaseService) => {
     BrowserModule,
     AppRoutingModule,
     CoreModule
-  ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInit,
-      multi: true,
-      deps: [UserbaseService]
-    }
   ],
   bootstrap: [AppComponent]
 })
